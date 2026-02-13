@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DiscountManager.Tests.Unit")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+14f4ca83e1ce0c01912847155ed3beceb4a17b63")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9f15f9a03cb802b4842d66dda3c28ac9df0ad181")]
 [assembly: System.Reflection.AssemblyProductAttribute("DiscountManager.Tests.Unit")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DiscountManager.Tests.Unit")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

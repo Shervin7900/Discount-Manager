@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DiscountManager.Modules.Discount")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+90102363de6df1776c756fc07f8c2b828d638de1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9f15f9a03cb802b4842d66dda3c28ac9df0ad181")]
 [assembly: System.Reflection.AssemblyProductAttribute("DiscountManager.Modules.Discount")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DiscountManager.Modules.Discount")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
