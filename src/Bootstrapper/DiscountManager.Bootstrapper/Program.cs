@@ -108,3 +108,5 @@ app.MapControllers();
 await DataSeeder.SeedAsync(app.Services);
 
 app.Run();
+
+public partial class Program { }
