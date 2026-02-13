@@ -1,0 +1,15 @@
+G:\Discount Manager\src\Modules\DiscountManager.Modules.Shops\bin\Debug\net10.0\DiscountManager.Modules.Shops.deps.json
+G:\Discount Manager\src\Modules\DiscountManager.Modules.Shops\bin\Debug\net10.0\DiscountManager.Modules.Shops.dll
+G:\Discount Manager\src\Modules\DiscountManager.Modules.Shops\bin\Debug\net10.0\DiscountManager.Modules.Shops.pdb
+G:\Discount Manager\src\Modules\DiscountManager.Modules.Shops\bin\Debug\net10.0\DiscountManager.Shared.SharedKernel.dll
+G:\Discount Manager\src\Modules\DiscountManager.Modules.Shops\bin\Debug\net10.0\DiscountManager.Shared.SharedKernel.pdb
+G:\Discount Manager\src\Modules\DiscountManager.Modules.Shops\obj\Debug\net10.0\DiscountManager.Modules.Shops.csproj.AssemblyReference.cache
+G:\Discount Manager\src\Modules\DiscountManager.Modules.Shops\obj\Debug\net10.0\DiscountManager.Modules.Shops.GeneratedMSBuildEditorConfig.editorconfig
+G:\Discount Manager\src\Modules\DiscountManager.Modules.Shops\obj\Debug\net10.0\DiscountManager.Modules.Shops.AssemblyInfoInputs.cache
+G:\Discount Manager\src\Modules\DiscountManager.Modules.Shops\obj\Debug\net10.0\DiscountManager.Modules.Shops.AssemblyInfo.cs
+G:\Discount Manager\src\Modules\DiscountManager.Modules.Shops\obj\Debug\net10.0\DiscountManager.Modules.Shops.csproj.CoreCompileInputs.cache
+G:\Discount Manager\src\Modules\DiscountManager.Modules.Shops\obj\Debug\net10.0\Discount.D67A79CA.Up2Date
+G:\Discount Manager\src\Modules\DiscountManager.Modules.Shops\obj\Debug\net10.0\DiscountManager.Modules.Shops.dll
+G:\Discount Manager\src\Modules\DiscountManager.Modules.Shops\obj\Debug\net10.0\refint\DiscountManager.Modules.Shops.dll
+G:\Discount Manager\src\Modules\DiscountManager.Modules.Shops\obj\Debug\net10.0\DiscountManager.Modules.Shops.pdb
+G:\Discount Manager\src\Modules\DiscountManager.Modules.Shops\obj\Debug\net10.0\ref\DiscountManager.Modules.Shops.dll

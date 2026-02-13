@@ -1,0 +1,6 @@
+@DiscountManager.Bootstrapper_HostAddress = http://localhost:5169
+
+GET {{DiscountManager.Bootstrapper_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
