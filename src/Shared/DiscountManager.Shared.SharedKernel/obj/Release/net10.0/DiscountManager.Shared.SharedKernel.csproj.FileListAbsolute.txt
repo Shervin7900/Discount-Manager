@@ -1,0 +1,13 @@
+G:\Discount Manager\src\Shared\DiscountManager.Shared.SharedKernel\bin\Release\net10.0\DiscountManager.Shared.SharedKernel.deps.json
+G:\Discount Manager\src\Shared\DiscountManager.Shared.SharedKernel\bin\Release\net10.0\DiscountManager.Shared.SharedKernel.dll
+G:\Discount Manager\src\Shared\DiscountManager.Shared.SharedKernel\bin\Release\net10.0\DiscountManager.Shared.SharedKernel.pdb
+G:\Discount Manager\src\Shared\DiscountManager.Shared.SharedKernel\obj\Release\net10.0\DiscountManager.Shared.SharedKernel.csproj.AssemblyReference.cache
+G:\Discount Manager\src\Shared\DiscountManager.Shared.SharedKernel\obj\Release\net10.0\DiscountManager.Shared.SharedKernel.GeneratedMSBuildEditorConfig.editorconfig
+G:\Discount Manager\src\Shared\DiscountManager.Shared.SharedKernel\obj\Release\net10.0\DiscountManager.Shared.SharedKernel.AssemblyInfoInputs.cache
+G:\Discount Manager\src\Shared\DiscountManager.Shared.SharedKernel\obj\Release\net10.0\DiscountManager.Shared.SharedKernel.AssemblyInfo.cs
+G:\Discount Manager\src\Shared\DiscountManager.Shared.SharedKernel\obj\Release\net10.0\DiscountManager.Shared.SharedKernel.csproj.CoreCompileInputs.cache
+G:\Discount Manager\src\Shared\DiscountManager.Shared.SharedKernel\obj\Release\net10.0\DiscountManager.Shared.SharedKernel.sourcelink.json
+G:\Discount Manager\src\Shared\DiscountManager.Shared.SharedKernel\obj\Release\net10.0\DiscountManager.Shared.SharedKernel.dll
+G:\Discount Manager\src\Shared\DiscountManager.Shared.SharedKernel\obj\Release\net10.0\refint\DiscountManager.Shared.SharedKernel.dll
+G:\Discount Manager\src\Shared\DiscountManager.Shared.SharedKernel\obj\Release\net10.0\DiscountManager.Shared.SharedKernel.pdb
+G:\Discount Manager\src\Shared\DiscountManager.Shared.SharedKernel\obj\Release\net10.0\ref\DiscountManager.Shared.SharedKernel.dll

@@ -88,6 +88,20 @@ public class InternalCatalogController : ControllerBase
             category = p.Category
         }));
     }
+
+    [HttpGet("products/active")]
+    public async Task<IActionResult> GetActiveProducts()
+    {
+        var products = await _dbContext.Products.ToListAsync();
+        return Ok(products.Select(p => new
+        {
+            id = p.Id,
+            name = p.Name,
+            price = p.Price,
+            salesPrice = p.SalesPrice,
+            category = p.Category
+        }));
+    }
 }
 
 public record ValidateProductsRequest(List<Guid> ProductIds);

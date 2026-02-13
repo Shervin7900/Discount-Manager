@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DiscountManager.Modules.Storage")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dea97aed112e2f73f4d1c33a9e824cbe69ed87ed")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+43ab90c118cfa6e5f8615411823d82b5dfcd342b")]
 [assembly: System.Reflection.AssemblyProductAttribute("DiscountManager.Modules.Storage")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DiscountManager.Modules.Storage")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
