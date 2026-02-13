@@ -13,3 +13,4 @@ G:\Discount Manager\src\Modules\DiscountManager.Modules.Basket\obj\Debug\net10.0
 G:\Discount Manager\src\Modules\DiscountManager.Modules.Basket\obj\Debug\net10.0\refint\DiscountManager.Modules.Basket.dll
 G:\Discount Manager\src\Modules\DiscountManager.Modules.Basket\obj\Debug\net10.0\DiscountManager.Modules.Basket.pdb
 G:\Discount Manager\src\Modules\DiscountManager.Modules.Basket\obj\Debug\net10.0\ref\DiscountManager.Modules.Basket.dll
+G:\Discount Manager\src\Modules\DiscountManager.Modules.Basket\obj\Debug\net10.0\DiscountManager.Modules.Basket.sourcelink.json

@@ -13,3 +13,4 @@ G:\Discount Manager\src\Modules\DiscountManager.Modules.Search\obj\Debug\net10.0
 G:\Discount Manager\src\Modules\DiscountManager.Modules.Search\obj\Debug\net10.0\refint\DiscountManager.Modules.Search.dll
 G:\Discount Manager\src\Modules\DiscountManager.Modules.Search\obj\Debug\net10.0\DiscountManager.Modules.Search.pdb
 G:\Discount Manager\src\Modules\DiscountManager.Modules.Search\obj\Debug\net10.0\ref\DiscountManager.Modules.Search.dll
+G:\Discount Manager\src\Modules\DiscountManager.Modules.Search\obj\Debug\net10.0\DiscountManager.Modules.Search.sourcelink.json

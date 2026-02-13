@@ -13,3 +13,4 @@ G:\Discount Manager\src\Modules\DiscountManager.Modules.Payment\obj\Debug\net10.
 G:\Discount Manager\src\Modules\DiscountManager.Modules.Payment\obj\Debug\net10.0\refint\DiscountManager.Modules.Payment.dll
 G:\Discount Manager\src\Modules\DiscountManager.Modules.Payment\obj\Debug\net10.0\DiscountManager.Modules.Payment.pdb
 G:\Discount Manager\src\Modules\DiscountManager.Modules.Payment\obj\Debug\net10.0\ref\DiscountManager.Modules.Payment.dll
+G:\Discount Manager\src\Modules\DiscountManager.Modules.Payment\obj\Debug\net10.0\DiscountManager.Modules.Payment.sourcelink.json

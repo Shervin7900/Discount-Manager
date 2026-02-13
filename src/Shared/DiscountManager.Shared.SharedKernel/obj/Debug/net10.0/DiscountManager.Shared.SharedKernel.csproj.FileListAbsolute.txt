@@ -10,3 +10,4 @@ G:\Discount Manager\src\Shared\DiscountManager.Shared.SharedKernel\obj\Debug\net
 G:\Discount Manager\src\Shared\DiscountManager.Shared.SharedKernel\obj\Debug\net10.0\refint\DiscountManager.Shared.SharedKernel.dll
 G:\Discount Manager\src\Shared\DiscountManager.Shared.SharedKernel\obj\Debug\net10.0\DiscountManager.Shared.SharedKernel.pdb
 G:\Discount Manager\src\Shared\DiscountManager.Shared.SharedKernel\obj\Debug\net10.0\ref\DiscountManager.Shared.SharedKernel.dll
+G:\Discount Manager\src\Shared\DiscountManager.Shared.SharedKernel\obj\Debug\net10.0\DiscountManager.Shared.SharedKernel.sourcelink.json
