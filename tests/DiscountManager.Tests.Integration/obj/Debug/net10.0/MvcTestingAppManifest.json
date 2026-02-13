@@ -1,0 +1,15 @@
+{
+  "DiscountManager.Bootstrapper, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "G:\\Discount Manager\\src\\Bootstrapper\\DiscountManager.Bootstrapper",
+  "DiscountManager.Modules.Basket, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "G:\\Discount Manager\\src\\Modules\\DiscountManager.Modules.Basket",
+  "DiscountManager.Modules.Catalog, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "G:\\Discount Manager\\src\\Modules\\DiscountManager.Modules.Catalog",
+  "DiscountManager.Modules.Customer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "G:\\Discount Manager\\src\\Modules\\DiscountManager.Modules.Customer",
+  "DiscountManager.Modules.Discount, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "G:\\Discount Manager\\src\\Modules\\DiscountManager.Modules.Discount",
+  "DiscountManager.Modules.Identity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "G:\\Discount Manager\\src\\Modules\\DiscountManager.Modules.Identity",
+  "DiscountManager.Modules.Inventory, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "G:\\Discount Manager\\src\\Modules\\DiscountManager.Modules.Inventory",
+  "DiscountManager.Modules.Ordering, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "G:\\Discount Manager\\src\\Modules\\DiscountManager.Modules.Ordering",
+  "DiscountManager.Modules.Payment, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "G:\\Discount Manager\\src\\Modules\\DiscountManager.Modules.Payment",
+  "DiscountManager.Modules.Search, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "G:\\Discount Manager\\src\\Modules\\DiscountManager.Modules.Search",
+  "DiscountManager.Modules.Shops, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "G:\\Discount Manager\\src\\Modules\\DiscountManager.Modules.Shops",
+  "DiscountManager.Modules.Storage, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "G:\\Discount Manager\\src\\Modules\\DiscountManager.Modules.Storage",
+  "DiscountManager.Shared.SharedKernel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "G:\\Discount Manager\\src\\Shared\\DiscountManager.Shared.SharedKernel"
+}

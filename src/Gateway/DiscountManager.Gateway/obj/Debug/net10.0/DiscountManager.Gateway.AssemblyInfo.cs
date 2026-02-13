@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DiscountManager.Gateway")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f46a2eca32091383c9701042286c34b73616d69c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+90102363de6df1776c756fc07f8c2b828d638de1")]
 [assembly: System.Reflection.AssemblyProductAttribute("DiscountManager.Gateway")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DiscountManager.Gateway")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

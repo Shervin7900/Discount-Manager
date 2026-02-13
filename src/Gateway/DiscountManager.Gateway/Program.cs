@@ -51,3 +51,5 @@ app.UseCors("AllowAll");
 await app.UseOcelot();
 
 app.Run();
+
+public partial class Program { }
