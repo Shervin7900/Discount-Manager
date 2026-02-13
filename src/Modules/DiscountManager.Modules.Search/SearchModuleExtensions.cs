@@ -11,37 +11,29 @@ public static class SearchModuleExtensions
 {
     public static IServiceCollection AddSearchModule(this IServiceCollection services, IConfiguration configuration)
     {
-        try
+        var redisConn = configuration["ConnectionStrings:Redis"] ?? "localhost";
+        
+        services.AddSingleton<IConnectionMultiplexer>(sp => 
         {
-            var multiplexer = ConnectionMultiplexer.Connect(configuration["ConnectionStrings:Redis"] ?? "localhost");
-            services.AddSingleton<IConnectionMultiplexer>(multiplexer);
-            
-            // Register implementations
-            services.AddScoped<RedisSearchService>();
-            
-            // Add Caching
-            services.AddMemoryCache();
-            services.AddStackExchangeRedisCache(options =>
-            {
-                options.Configuration = configuration["ConnectionStrings:Redis"] ?? "localhost";
-                options.InstanceName = "DiscountManager_Search_";
-            });
+            try { return ConnectionMultiplexer.Connect(redisConn); }
+            catch { return null!; }
+        });
 
-            // Register Decorator
-            services.AddScoped<ISearchService>(sp =>
-            {
-                var inner = sp.GetRequiredService<RedisSearchService>();
-                var memCache = sp.GetRequiredService<IMemoryCache>();
-                var distCache = sp.GetRequiredService<IDistributedCache>();
-                return new CachedSearchService(inner, memCache, distCache);
-            });
-        }
-        catch (Exception ex)
+        services.AddScoped<RedisSearchService>();
+        services.AddMemoryCache();
+        services.AddStackExchangeRedisCache(options =>
         {
-            Console.WriteLine($"WARNING: Could not connect to Redis for SearchModule. {ex.Message}");
-            // Fallback to NoOp service
-            services.AddScoped<ISearchService, NoOpSearchService>();
-        }
+            options.Configuration = redisConn;
+            options.InstanceName = "DiscountManager_Search_";
+        });
+
+        services.AddScoped<ISearchService>(sp =>
+        {
+            var inner = sp.GetRequiredService<RedisSearchService>();
+            var memCache = sp.GetRequiredService<IMemoryCache>();
+            var distCache = sp.GetService<IDistributedCache>();
+            return distCache == null ? inner : new CachedSearchService(inner, memCache, distCache);
+        });
 
         return services;
     }

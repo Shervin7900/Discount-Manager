@@ -91,13 +91,6 @@
             "AuthenticationOptions": {
                 "AuthenticationProviderKey": "Bearer",
                 "AllowedScopes": []
-            },
-            "RateLimitOptions": {
-                "ClientWhitelist": [],
-                "EnableRateLimiting": true,
-                "Period": "1m",
-                "PeriodTimespan": 60,
-                "Limit": 100
             }
         },
         {

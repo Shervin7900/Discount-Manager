@@ -24,17 +24,15 @@ public static class BasketModuleExtensions
         // I'll use TryAddSingleton in Bootstrapper or check here.
         // For now, I'll just register IBasketRepository using an injected IConnectionMultiplexer.
         // If Search Module also registers IConnectionMultiplexer, the DI container resolves the last one or first key.
-        try
+        var redisConnection = configuration.GetConnectionString("Redis") ?? "localhost";
+        
+        services.AddSingleton<IConnectionMultiplexer>(sp => 
         {
-            var redisConnection = configuration.GetConnectionString("Redis") ?? "localhost";
-            var multiplexer = ConnectionMultiplexer.Connect(redisConnection);
-            services.AddSingleton<IConnectionMultiplexer>(multiplexer);
-            services.AddScoped<IBasketRepository, RedisBasketRepository>();
-        }
-        catch (Exception ex)
-        {
-             Console.WriteLine($"WARNING: Could not connect to Redis for BasketModule. {ex.Message}");
-        }
+            try { return ConnectionMultiplexer.Connect(redisConnection); }
+            catch { return null!; }
+        });
+
+        services.AddScoped<IBasketRepository, RedisBasketRepository>();
 
         return services;
     }
