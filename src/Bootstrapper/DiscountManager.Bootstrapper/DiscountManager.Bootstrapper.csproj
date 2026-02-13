@@ -26,6 +26,8 @@
     <ProjectReference Include="..\..\Modules\DiscountManager.Modules.Search\DiscountManager.Modules.Search.csproj" />
     <ProjectReference Include="..\..\Shared\DiscountManager.Shared.SharedKernel\DiscountManager.Shared.SharedKernel.csproj" />
     <ProjectReference Include="..\..\Modules\DiscountManager.Modules.Payment\DiscountManager.Modules.Payment.csproj" />
+    <ProjectReference Include="..\..\Modules\DiscountManager.Modules.Identity\DiscountManager.Modules.Identity.csproj" />
+    <ProjectReference Include="..\..\Modules\DiscountManager.Modules.Customer\DiscountManager.Modules.Customer.csproj" />
   </ItemGroup>
 
 </Project>

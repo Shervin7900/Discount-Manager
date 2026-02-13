@@ -191,3 +191,9 @@ G:\Discount Manager\src\Bootstrapper\DiscountManager.Bootstrapper\bin\Debug\net1
 G:\Discount Manager\src\Bootstrapper\DiscountManager.Bootstrapper\bin\Debug\net10.0\DiscountManager.Modules.Payment.pdb
 G:\Discount Manager\src\Bootstrapper\DiscountManager.Bootstrapper\obj\Debug\net10.0\DiscountManager.Bootstrapper.sourcelink.json
 G:\Discount Manager\src\Bootstrapper\DiscountManager.Bootstrapper\bin\Debug\net10.0\Microsoft.Extensions.Caching.StackExchangeRedis.dll
+G:\Discount Manager\src\Bootstrapper\DiscountManager.Bootstrapper\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+G:\Discount Manager\src\Bootstrapper\DiscountManager.Bootstrapper\bin\Debug\net10.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+G:\Discount Manager\src\Bootstrapper\DiscountManager.Bootstrapper\bin\Debug\net10.0\DiscountManager.Modules.Customer.dll
+G:\Discount Manager\src\Bootstrapper\DiscountManager.Bootstrapper\bin\Debug\net10.0\DiscountManager.Modules.Identity.dll
+G:\Discount Manager\src\Bootstrapper\DiscountManager.Bootstrapper\bin\Debug\net10.0\DiscountManager.Modules.Identity.pdb
+G:\Discount Manager\src\Bootstrapper\DiscountManager.Bootstrapper\bin\Debug\net10.0\DiscountManager.Modules.Customer.pdb
