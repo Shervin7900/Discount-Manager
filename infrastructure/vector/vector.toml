@@ -1,0 +1,102 @@
+# Vector configuration for metrics collection and log aggregation
+# https://vector.dev/docs/
+
+# Data directory
+data_dir = "/var/lib/vector"
+
+# Sources - collect logs and metrics from various sources
+
+[sources.nginx_access_logs]
+type = "file"
+include = ["/var/log/nginx/access.log"]
+read_from = "beginning"
+
+[sources.nginx_error_logs]
+type = "file"
+include = ["/var/log/nginx/error.log"]
+read_from = "beginning"
+
+[sources.gateway_logs]
+type = "file"
+include = ["/var/log/gateway/*.log"]
+read_from = "beginning"
+
+[sources.bootstrapper_logs]
+type = "file"
+include = ["/var/log/bootstrapper/*.log"]
+read_from = "beginning"
+
+[sources.nginx_metrics]
+type = "nginx_metrics"
+endpoints = ["http://localhost/metrics"]
+scrape_interval_secs = 15
+
+[sources.host_metrics]
+type = "host_metrics"
+scrape_interval_secs = 15
+
+# Transforms - parse and enrich data
+
+[transforms.parse_nginx_access]
+type = "remap"
+inputs = ["nginx_access_logs"]
+source = '''
+. = parse_nginx_log!(.message, "combined")
+.timestamp = parse_timestamp!(.timestamp, "%d/%b/%Y:%H:%M:%S %z")
+'''
+
+[transforms.parse_nginx_error]
+type = "remap"
+inputs = ["nginx_error_logs"]
+source = '''
+. = parse_regex!(.message, r'^(?P<timestamp>\d{4}/\d{2}/\d{2} \d{2}:\d{2}:\d{2}) \[(?P<level>\w+)\] (?P<message>.+)$')
+.timestamp = parse_timestamp!(.timestamp, "%Y/%m/%d %H:%M:%S")
+'''
+
+[transforms.parse_app_logs]
+type = "remap"
+inputs = ["gateway_logs", "bootstrapper_logs"]
+source = '''
+. = parse_json!(.message)
+.timestamp = parse_timestamp!(.timestamp, "%+")
+'''
+
+[transforms.add_metadata]
+type = "remap"
+inputs = ["parse_nginx_access", "parse_nginx_error", "parse_app_logs"]
+source = '''
+.environment = "production"
+.service = "discount-manager"
+.host = get_hostname!()
+'''
+
+# Sinks - send data to destinations
+
+[sinks.prometheus_exporter]
+type = "prometheus_exporter"
+inputs = ["nginx_metrics", "host_metrics"]
+address = "0.0.0.0:9598"
+default_namespace = "discount_manager"
+
+[sinks.elasticsearch_logs]
+type = "elasticsearch"
+inputs = ["add_metadata"]
+endpoint = "http://localhost:9200"
+mode = "bulk"
+compression = "gzip"
+
+[sinks.console_logs]
+type = "console"
+inputs = ["add_metadata"]
+encoding.codec = "json"
+
+[sinks.file_archive]
+type = "file"
+inputs = ["add_metadata"]
+path = "/var/log/vector/archive-%Y-%m-%d.log"
+encoding.codec = "json"
+
+# Health check
+[api]
+enabled = true
+address = "0.0.0.0:8686"

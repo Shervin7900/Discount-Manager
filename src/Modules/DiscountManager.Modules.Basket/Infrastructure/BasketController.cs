@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using DiscountManager.Modules.Basket.Domain;
 
 namespace DiscountManager.Modules.Basket.Infrastructure;
 
 [ApiController]
 [Route("api/basket")]
+[Authorize]
 public class BasketController : ControllerBase
 {
     private readonly IBasketRepository _repository;
