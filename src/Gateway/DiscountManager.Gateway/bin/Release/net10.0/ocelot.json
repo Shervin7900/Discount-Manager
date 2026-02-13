@@ -53,12 +53,7 @@
                 "POST",
                 "PUT",
                 "DELETE"
-            ],
-            "QoSOptions": {
-                "ExceptionsAllowedBeforeBreaking": 3,
-                "DurationOfBreak": 5000,
-                "TimeoutValue": 10000
-            }
+            ]
         },
         {
             "DownstreamPathTemplate": "/api/shops/{everything}",
@@ -238,11 +233,6 @@
         }
     ],
     "GlobalConfiguration": {
-        "BaseUrl": "http://localhost:5000",
-        "RateLimitOptions": {
-            "DisableRateLimitHeaders": false,
-            "QuotaExceededMessage": "Rate limit exceeded. Please try again later.",
-            "HttpStatusCode": 429
-        }
+        "BaseUrl": "http://localhost:5000"
     }
 }

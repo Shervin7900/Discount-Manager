@@ -53,12 +53,7 @@
                 "POST",
                 "PUT",
                 "DELETE"
-            ],
-            "QoSOptions": {
-                "ExceptionsAllowedBeforeBreaking": 3,
-                "DurationOfBreak": 5000,
-                "TimeoutValue": 10000
-            }
+            ]
         },
         {
             "DownstreamPathTemplate": "/api/shops/{everything}",
