@@ -190,3 +190,4 @@ G:\Discount Manager\src\Bootstrapper\DiscountManager.Bootstrapper\bin\Debug\net1
 G:\Discount Manager\src\Bootstrapper\DiscountManager.Bootstrapper\bin\Debug\net10.0\DiscountManager.Modules.Payment.dll
 G:\Discount Manager\src\Bootstrapper\DiscountManager.Bootstrapper\bin\Debug\net10.0\DiscountManager.Modules.Payment.pdb
 G:\Discount Manager\src\Bootstrapper\DiscountManager.Bootstrapper\obj\Debug\net10.0\DiscountManager.Bootstrapper.sourcelink.json
+G:\Discount Manager\src\Bootstrapper\DiscountManager.Bootstrapper\bin\Debug\net10.0\Microsoft.Extensions.Caching.StackExchangeRedis.dll

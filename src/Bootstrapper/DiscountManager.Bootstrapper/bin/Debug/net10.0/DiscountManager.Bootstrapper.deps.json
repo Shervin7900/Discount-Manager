@@ -548,6 +548,17 @@
           }
         }
       },
+      "Microsoft.Extensions.Caching.StackExchangeRedis/10.0.3": {
+        "dependencies": {
+          "StackExchange.Redis": "2.11.0"
+        },
+        "runtime": {
+          "lib/net10.0/Microsoft.Extensions.Caching.StackExchangeRedis.dll": {
+            "assemblyVersion": "10.0.3.0",
+            "fileVersion": "10.0.326.7603"
+          }
+        }
+      },
       "Microsoft.Extensions.DependencyModel/10.0.3": {
         "runtime": {
           "lib/net10.0/Microsoft.Extensions.DependencyModel.dll": {
@@ -991,6 +1002,7 @@
       "DiscountManager.Modules.Search/1.0.0": {
         "dependencies": {
           "DiscountManager.Shared.SharedKernel": "1.0.0",
+          "Microsoft.Extensions.Caching.StackExchangeRedis": "10.0.3",
           "StackExchange.Redis": "2.11.0"
         },
         "runtime": {
@@ -1197,6 +1209,13 @@
       "sha512": "sha512-q0fUFQ4PG4uhKwP+D5dsvlDQbwNpEfWsag3HaoGzkkKj+OQ90ya9W0HuFtwigwEEqc/H1SzDZYUAv7Ya1hh5ow==",
       "path": "microsoft.entityframeworkcore.sqlserver/10.0.3",
       "hashPath": "microsoft.entityframeworkcore.sqlserver.10.0.3.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Caching.StackExchangeRedis/10.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-DarGypNFuSCH6J6N/aMos3X+XuIGz0IvazZLoy8SXe8jKWuzdqvxyrop1CPzv/oYPLbQkt1twEoaWr7arLBe3w==",
+      "path": "microsoft.extensions.caching.stackexchangeredis/10.0.3",
+      "hashPath": "microsoft.extensions.caching.stackexchangeredis.10.0.3.nupkg.sha512"
     },
     "Microsoft.Extensions.DependencyModel/10.0.3": {
       "type": "package",

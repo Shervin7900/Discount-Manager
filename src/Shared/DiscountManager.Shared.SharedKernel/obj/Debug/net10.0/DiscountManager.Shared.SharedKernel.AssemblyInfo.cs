@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DiscountManager.Shared.SharedKernel")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5b4b264f773fc30e34af8faf370e946ea71ed3ca")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+147b79326953c36a568a83d89d31a73b626621f9")]
 [assembly: System.Reflection.AssemblyProductAttribute("DiscountManager.Shared.SharedKernel")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DiscountManager.Shared.SharedKernel")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

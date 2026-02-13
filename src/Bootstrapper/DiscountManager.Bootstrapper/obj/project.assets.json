@@ -670,6 +670,22 @@
           "buildMultiTargeting/Microsoft.Extensions.ApiDescription.Server.targets": {}
         }
       },
+      "Microsoft.Extensions.Caching.StackExchangeRedis/10.0.3": {
+        "type": "package",
+        "dependencies": {
+          "StackExchange.Redis": "2.7.27"
+        },
+        "compile": {
+          "lib/net10.0/Microsoft.Extensions.Caching.StackExchangeRedis.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/Microsoft.Extensions.Caching.StackExchangeRedis.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.Extensions.DependencyModel/10.0.3": {
         "type": "package",
         "compile": {
@@ -1389,6 +1405,7 @@
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
           "DiscountManager.Shared.SharedKernel": "1.0.0",
+          "Microsoft.Extensions.Caching.StackExchangeRedis": "10.0.3",
           "StackExchange.Redis": "2.11.0"
         },
         "compile": {
@@ -3143,6 +3160,26 @@
         "tools/net462/System.Xml.XmlDocument.dll",
         "tools/net462/System.Xml.XmlSerializer.dll",
         "tools/net462/netstandard.dll"
+      ]
+    },
+    "Microsoft.Extensions.Caching.StackExchangeRedis/10.0.3": {
+      "sha512": "DarGypNFuSCH6J6N/aMos3X+XuIGz0IvazZLoy8SXe8jKWuzdqvxyrop1CPzv/oYPLbQkt1twEoaWr7arLBe3w==",
+      "type": "package",
+      "path": "microsoft.extensions.caching.stackexchangeredis/10.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "PACKAGE.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net10.0/Microsoft.Extensions.Caching.StackExchangeRedis.dll",
+        "lib/net10.0/Microsoft.Extensions.Caching.StackExchangeRedis.xml",
+        "lib/net462/Microsoft.Extensions.Caching.StackExchangeRedis.dll",
+        "lib/net462/Microsoft.Extensions.Caching.StackExchangeRedis.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Caching.StackExchangeRedis.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Caching.StackExchangeRedis.xml",
+        "microsoft.extensions.caching.stackexchangeredis.10.0.3.nupkg.sha512",
+        "microsoft.extensions.caching.stackexchangeredis.nuspec"
       ]
     },
     "Microsoft.Extensions.DependencyModel/10.0.3": {

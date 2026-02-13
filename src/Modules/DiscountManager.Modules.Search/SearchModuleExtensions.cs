@@ -1,6 +1,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using StackExchange.Redis;
+using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Memory;
 using DiscountManager.Modules.Search.Infrastructure;
 
 namespace DiscountManager.Modules.Search;
@@ -13,7 +15,26 @@ public static class SearchModuleExtensions
         {
             var multiplexer = ConnectionMultiplexer.Connect(configuration["ConnectionStrings:Redis"] ?? "localhost");
             services.AddSingleton<IConnectionMultiplexer>(multiplexer);
-            services.AddScoped<ISearchService, RedisSearchService>();
+            
+            // Register implementations
+            services.AddScoped<RedisSearchService>();
+            
+            // Add Caching
+            services.AddMemoryCache();
+            services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = configuration["ConnectionStrings:Redis"] ?? "localhost";
+                options.InstanceName = "DiscountManager_Search_";
+            });
+
+            // Register Decorator
+            services.AddScoped<ISearchService>(sp =>
+            {
+                var inner = sp.GetRequiredService<RedisSearchService>();
+                var memCache = sp.GetRequiredService<IMemoryCache>();
+                var distCache = sp.GetRequiredService<IDistributedCache>();
+                return new CachedSearchService(inner, memCache, distCache);
+            });
         }
         catch (Exception ex)
         {

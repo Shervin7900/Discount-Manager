@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "6Qr98LX4wrQ=",
+  "dgSpecHash": "RD4owmit18Y=",
   "success": true,
   "projectFilePath": "G:\\Discount Manager\\src\\Modules\\DiscountManager.Modules.Search\\DiscountManager.Modules.Search.csproj",
   "expectedPackageFiles": [
@@ -24,6 +24,9 @@
     "C:\\Users\\sherv\\.nuget\\packages\\microsoft.aspnetcore.routing.abstractions\\2.3.0\\microsoft.aspnetcore.routing.abstractions.2.3.0.nupkg.sha512",
     "C:\\Users\\sherv\\.nuget\\packages\\microsoft.aspnetcore.webutilities\\2.3.0\\microsoft.aspnetcore.webutilities.2.3.0.nupkg.sha512",
     "C:\\Users\\sherv\\.nuget\\packages\\microsoft.dotnet.platformabstractions\\2.1.0\\microsoft.dotnet.platformabstractions.2.1.0.nupkg.sha512",
+    "C:\\Users\\sherv\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\10.0.3\\microsoft.extensions.caching.abstractions.10.0.3.nupkg.sha512",
+    "C:\\Users\\sherv\\.nuget\\packages\\microsoft.extensions.caching.memory\\10.0.3\\microsoft.extensions.caching.memory.10.0.3.nupkg.sha512",
+    "C:\\Users\\sherv\\.nuget\\packages\\microsoft.extensions.caching.stackexchangeredis\\10.0.3\\microsoft.extensions.caching.stackexchangeredis.10.0.3.nupkg.sha512",
     "C:\\Users\\sherv\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\10.0.3\\microsoft.extensions.configuration.abstractions.10.0.3.nupkg.sha512",
     "C:\\Users\\sherv\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\8.0.1\\microsoft.extensions.dependencyinjection.8.0.1.nupkg.sha512",
     "C:\\Users\\sherv\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\10.0.3\\microsoft.extensions.dependencyinjection.abstractions.10.0.3.nupkg.sha512",
@@ -33,7 +36,7 @@
     "C:\\Users\\sherv\\.nuget\\packages\\microsoft.extensions.hosting.abstractions\\8.0.1\\microsoft.extensions.hosting.abstractions.8.0.1.nupkg.sha512",
     "C:\\Users\\sherv\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\10.0.3\\microsoft.extensions.logging.abstractions.10.0.3.nupkg.sha512",
     "C:\\Users\\sherv\\.nuget\\packages\\microsoft.extensions.objectpool\\8.0.11\\microsoft.extensions.objectpool.8.0.11.nupkg.sha512",
-    "C:\\Users\\sherv\\.nuget\\packages\\microsoft.extensions.options\\8.0.2\\microsoft.extensions.options.8.0.2.nupkg.sha512",
+    "C:\\Users\\sherv\\.nuget\\packages\\microsoft.extensions.options\\10.0.3\\microsoft.extensions.options.10.0.3.nupkg.sha512",
     "C:\\Users\\sherv\\.nuget\\packages\\microsoft.extensions.primitives\\10.0.3\\microsoft.extensions.primitives.10.0.3.nupkg.sha512",
     "C:\\Users\\sherv\\.nuget\\packages\\microsoft.identitymodel.abstractions\\8.14.0\\microsoft.identitymodel.abstractions.8.14.0.nupkg.sha512",
     "C:\\Users\\sherv\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\8.14.0\\microsoft.identitymodel.jsonwebtokens.8.14.0.nupkg.sha512",

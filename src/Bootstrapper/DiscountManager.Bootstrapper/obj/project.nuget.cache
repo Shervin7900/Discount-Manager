@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "5MDHgtxnYRU=",
+  "dgSpecHash": "RVJf9VVxbnk=",
   "success": true,
   "projectFilePath": "G:\\Discount Manager\\src\\Bootstrapper\\DiscountManager.Bootstrapper\\DiscountManager.Bootstrapper.csproj",
   "expectedPackageFiles": [
@@ -29,6 +29,7 @@
     "C:\\Users\\sherv\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\10.0.3\\microsoft.entityframeworkcore.relational.10.0.3.nupkg.sha512",
     "C:\\Users\\sherv\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\10.0.3\\microsoft.entityframeworkcore.sqlserver.10.0.3.nupkg.sha512",
     "C:\\Users\\sherv\\.nuget\\packages\\microsoft.extensions.apidescription.server\\10.0.0\\microsoft.extensions.apidescription.server.10.0.0.nupkg.sha512",
+    "C:\\Users\\sherv\\.nuget\\packages\\microsoft.extensions.caching.stackexchangeredis\\10.0.3\\microsoft.extensions.caching.stackexchangeredis.10.0.3.nupkg.sha512",
     "C:\\Users\\sherv\\.nuget\\packages\\microsoft.extensions.dependencymodel\\10.0.3\\microsoft.extensions.dependencymodel.10.0.3.nupkg.sha512",
     "C:\\Users\\sherv\\.nuget\\packages\\microsoft.identity.client\\4.73.1\\microsoft.identity.client.4.73.1.nupkg.sha512",
     "C:\\Users\\sherv\\.nuget\\packages\\microsoft.identity.client.extensions.msal\\4.73.1\\microsoft.identity.client.extensions.msal.4.73.1.nupkg.sha512",
