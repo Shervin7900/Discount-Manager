@@ -4,11 +4,11 @@ using System.Net.Http.Json;
 
 namespace DiscountManager.Tests.E2E;
 
-public class GatewayFlowTests : IClassFixture<WebApplicationFactory<Program>>
+public class GatewayFlowTests : IClassFixture<WebApplicationFactory<DiscountManager.Gateway.Program>>
 {
-    private readonly WebApplicationFactory<Program> _gatewayFactory;
+    private readonly WebApplicationFactory<DiscountManager.Gateway.Program> _gatewayFactory;
 
-    public GatewayFlowTests(WebApplicationFactory<Program> factory)
+    public GatewayFlowTests(WebApplicationFactory<DiscountManager.Gateway.Program> factory)
     {
         _gatewayFactory = factory;
     }

@@ -16,9 +16,14 @@ public class CatalogController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetProducts()
+    public async Task<IActionResult> GetProducts([FromQuery] string? category = null)
     {
-        var products = await _dbContext.Products.ToListAsync();
+        var query = _dbContext.Products.AsQueryable();
+        if (!string.IsNullOrEmpty(category))
+        {
+            query = query.Where(x => x.Category == category);
+        }
+        var products = await query.ToListAsync();
         return Ok(products);
     }
 

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DiscountManager.Modules.Inventory")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+90102363de6df1776c756fc07f8c2b828d638de1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+27b0e2eb6fbcebed580045816cc1bb654add344e")]
 [assembly: System.Reflection.AssemblyProductAttribute("DiscountManager.Modules.Inventory")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DiscountManager.Modules.Inventory")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

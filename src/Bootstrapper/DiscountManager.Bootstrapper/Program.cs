@@ -109,4 +109,7 @@ await DataSeeder.SeedAsync(app.Services);
 
 app.Run();
 
-public partial class Program { }
+namespace DiscountManager.Bootstrapper
+{
+    public partial class Program { }
+}

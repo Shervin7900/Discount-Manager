@@ -4,10 +4,13 @@ using DiscountManager.Modules.Ordering.Infrastructure;
 using DiscountManager.Modules.Ordering.Infrastructure.Clients;
 using DiscountManager.Modules.Payment.Contracts;
 
+using Microsoft.AspNetCore.Authorization;
+
 namespace DiscountManager.Modules.Ordering.Infrastructure;
 
 [ApiController]
 [Route("api/checkout")]
+[Authorize]
 public class CheckoutController : ControllerBase
 {
     private readonly OrderingDbContext _dbContext;

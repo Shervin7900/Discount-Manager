@@ -52,4 +52,7 @@ await app.UseOcelot();
 
 app.Run();
 
-public partial class Program { }
+namespace DiscountManager.Gateway
+{
+    public partial class Program { }
+}
