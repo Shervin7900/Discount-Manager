@@ -1,0 +1,61 @@
+# .dockerignore
+# Ignore build outputs
+**/bin/
+**/obj/
+**/out/
+
+# Ignore IDE files
+.vs/
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Ignore test results
+**/TestResults/
+**/*.trx
+**/*.coverage
+
+# Ignore NuGet packages
+**/packages/
+*.nupkg
+
+# Ignore logs
+**/logs/
+*.log
+
+# Ignore temporary files
+**/tmp/
+**/temp/
+**/.tmp/
+
+# Ignore Git files
+.git/
+.gitignore
+.gitattributes
+
+# Ignore documentation
+*.md
+!README.md
+
+# Ignore CI/CD files
+.github/
+azure-pipelines.yml
+
+# Ignore infrastructure files (not needed in container)
+infrastructure/
+!infrastructure/scripts/
+
+# Ignore environment files
+.env
+.env.*
+!.env.example
+
+# Ignore node modules (if any frontend)
+**/node_modules/
+
+# Keep Dockerfiles
+!**/Dockerfile
+!**/.dockerignore
