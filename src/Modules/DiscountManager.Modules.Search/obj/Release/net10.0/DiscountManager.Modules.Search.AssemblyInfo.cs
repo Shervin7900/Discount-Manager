@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DiscountManager.Modules.Search")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f99f9e17fb594ecf8f6131c7135788deba339c3d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+23b8aa134e33450a1a975fa31e0122ceb2ed9547")]
 [assembly: System.Reflection.AssemblyProductAttribute("DiscountManager.Modules.Search")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DiscountManager.Modules.Search")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -31,19 +31,23 @@ public class CustomWebApplicationFactory<TProgram> : WebApplicationFactory<TProg
                 var descriptor = services.SingleOrDefault(d => d.ServiceType == typeof(DbContextOptions<TContext>));
                 if (descriptor != null) services.Remove(descriptor);
 
+                // Use a unique name per test run instance if possible, or a stable one.
+                // For integration tests, a stable name is usually fine unless tests run in parallel.
                 services.AddDbContext<TContext>(options => options.UseInMemoryDatabase(dbName));
             }
 
-            ReplaceWithInMemory<CatalogDbContext>("InMemoryCatalog");
-            ReplaceWithInMemory<DiscountDbContext>("InMemoryDiscount");
-            ReplaceWithInMemory<OrderingDbContext>("InMemoryOrdering");
-            ReplaceWithInMemory<PaymentDbContext>("InMemoryPayment");
-            ReplaceWithInMemory<ShopsDbContext>("InMemoryShops");
-            ReplaceWithInMemory<InventoryDbContext>("InMemoryInventory");
-            ReplaceWithInMemory<IdentityDbContext>("InMemoryIdentity");
-            ReplaceWithInMemory<CustomerDbContext>("InMemoryCustomer");
+            var uniqueId = Guid.NewGuid().ToString().Substring(0, 8);
+            ReplaceWithInMemory<CatalogDbContext>($"Catalog_{uniqueId}");
+            ReplaceWithInMemory<DiscountDbContext>($"Discount_{uniqueId}");
+            ReplaceWithInMemory<OrderingDbContext>($"Ordering_{uniqueId}");
+            ReplaceWithInMemory<PaymentDbContext>($"Payment_{uniqueId}");
+            ReplaceWithInMemory<ShopsDbContext>($"Shops_{uniqueId}");
+            ReplaceWithInMemory<InventoryDbContext>($"Inventory_{uniqueId}");
+            ReplaceWithInMemory<IdentityDbContext>($"Identity_{uniqueId}");
+            ReplaceWithInMemory<CustomerDbContext>($"Customer_{uniqueId}");
 
             // Mock Redis
+            // ... (keep Redis mock same)
             // We remove all registrations and add a single mock that returns a mock database.
             var redisDescriptors = services.Where(d => d.ServiceType == typeof(IConnectionMultiplexer)).ToList();
             foreach (var d in redisDescriptors) services.Remove(d);
@@ -65,6 +69,28 @@ public class CustomWebApplicationFactory<TProgram> : WebApplicationFactory<TProg
                     });
                 })
                 .ConfigureHttpContext(builder => builder.UseDefaultAspNetCore());
+
+            // Build the provider once to initialize databases explicitly
+            var sp = services.BuildServiceProvider();
+            using var scope = sp.CreateScope();
+            var providers = scope.ServiceProvider;
+
+            try
+            {
+                // Ensure all DBs are created before app starts and seeder runs
+                providers.GetRequiredService<CatalogDbContext>().Database.EnsureCreated();
+                providers.GetRequiredService<ShopsDbContext>().Database.EnsureCreated();
+                providers.GetRequiredService<DiscountDbContext>().Database.EnsureCreated();
+                providers.GetRequiredService<OrderingDbContext>().Database.EnsureCreated();
+                providers.GetRequiredService<PaymentDbContext>().Database.EnsureCreated();
+                providers.GetRequiredService<InventoryDbContext>().Database.EnsureCreated();
+                providers.GetRequiredService<IdentityDbContext>().Database.EnsureCreated();
+                providers.GetRequiredService<CustomerDbContext>().Database.EnsureCreated();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"PRE-START ERROR: {ex.Message}");
+            }
         });
     }
 }
