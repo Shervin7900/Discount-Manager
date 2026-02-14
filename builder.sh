@@ -16,7 +16,8 @@ dotnet pack src/Shared/DiscountManager.Shared.SharedKernel/DiscountManager.Share
 echo "Building and packing Modules..."
 for dir in src/Modules/*/ ; do
     if [ -d "$dir" ]; then
-        project_file=$(find "$dir" -maxdepth 2 -name "*.csproj")
+        # Find the first csproj file in the module directory
+        project_file=$(find "$dir" -maxdepth 2 -name "*.csproj" | head -n 1)
         if [ -n "$project_file" ]; then
             echo "Processing $project_file..."
             dotnet pack "$project_file" --configuration $CONFIG --output $OUTPUT_DIR

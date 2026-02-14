@@ -9,8 +9,6 @@ on:
 env:
   DOTNET_VERSION: "10.0.x"
   REGISTRY: ghcr.io
-  IMAGE_NAME_GATEWAY: ${{ github.repository }}/gateway
-  IMAGE_NAME_BOOTSTRAPPER: ${{ github.repository }}/bootstrapper
 
 jobs:
   build-and-test:
@@ -83,6 +81,11 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set Image Names
+        run: |
+          echo "IMAGE_NAME_GATEWAY=${GITHUB_REPOSITORY,,}/gateway" >> ${GITHUB_ENV}
+          echo "IMAGE_NAME_BOOTSTRAPPER=${GITHUB_REPOSITORY,,}/bootstrapper" >> ${GITHUB_ENV}
 
       - name: Extract metadata for Gateway
         id: meta-gateway
