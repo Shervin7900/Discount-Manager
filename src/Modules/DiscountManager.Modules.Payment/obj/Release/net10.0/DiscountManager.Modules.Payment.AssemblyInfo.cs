@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DiscountManager.Modules.Payment")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+558d13e9092f8776fcc8bbc4f622ccf0ea18d9f1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f99f9e17fb594ecf8f6131c7135788deba339c3d")]
 [assembly: System.Reflection.AssemblyProductAttribute("DiscountManager.Modules.Payment")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DiscountManager.Modules.Payment")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

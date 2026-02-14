@@ -5,10 +5,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Moq;
 using StackExchange.Redis;
+using Parbad.Builder;
+using Parbad.Gateway.ParbadVirtual;
+using Parbad.Storage.EntityFrameworkCore.Builder;
 using DiscountManager.Modules.Catalog.Infrastructure;
 using DiscountManager.Modules.Discount.Infrastructure;
 using DiscountManager.Modules.Ordering.Infrastructure;
-using DiscountManager.Modules.Payment.Infrastructure;
+using DiscountManager.Modules.Payment;
 using DiscountManager.Modules.Shops.Infrastructure;
 using DiscountManager.Modules.Inventory.Infrastructure;
 using DiscountManager.Modules.Identity.Infrastructure;
@@ -41,29 +44,27 @@ public class CustomWebApplicationFactory<TProgram> : WebApplicationFactory<TProg
             ReplaceWithInMemory<CustomerDbContext>("InMemoryCustomer");
 
             // Mock Redis
-            var redisDescriptor = services.SingleOrDefault(d => d.ServiceType == typeof(IConnectionMultiplexer));
-            if (redisDescriptor != null) services.Remove(redisDescriptor);
+            // We remove all registrations and add a single mock that returns a mock database.
+            var redisDescriptors = services.Where(d => d.ServiceType == typeof(IConnectionMultiplexer)).ToList();
+            foreach (var d in redisDescriptors) services.Remove(d);
 
             var mockMultiplexer = new Mock<IConnectionMultiplexer>();
             var mockDatabase = new Mock<IDatabase>();
             mockMultiplexer.Setup(_ => _.GetDatabase(It.IsAny<int>(), It.IsAny<object>())).Returns(mockDatabase.Object);
             services.AddSingleton(mockMultiplexer.Object);
 
-            // Ensure database is created
-            var sp = services.BuildServiceProvider();
-            using var scope = sp.CreateScope();
-            var scopedServices = scope.ServiceProvider;
-            
-            try
-            {
-                scopedServices.GetRequiredService<CatalogDbContext>().Database.EnsureCreated();
-                // Add others if needed
-            }
-            catch (Exception ex)
-            {
-                var logger = scopedServices.GetRequiredService<ILogger<CustomWebApplicationFactory<TProgram>>>();
-                logger.LogError(ex, "An error occurred seeding the database with test messages. Error: {Message}", ex.Message);
-            }
+            // Re-configure Parbad for In-Memory specifically for tests
+            services.AddParbad()
+                .ConfigureGateways(gateways => gateways.AddParbadVirtual())
+                .ConfigureStorage(storage =>
+                {
+                    storage.UseEfCore(ef =>
+                    {
+                        ef.ConfigureDbContext = db => db.UseInMemoryDatabase("InMemoryParbad");
+                        ef.DefaultSchema = "payment";
+                    });
+                })
+                .ConfigureHttpContext(builder => builder.UseDefaultAspNetCore());
         });
     }
 }
