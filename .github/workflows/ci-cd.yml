@@ -2,9 +2,9 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [main, develop]
+    branches: [main, develop, staging]
   pull_request:
-    branches: [main, develop]
+    branches: [main, develop, staging]
 
 env:
   DOTNET_VERSION: "10.0.x"
@@ -92,8 +92,9 @@ jobs:
           tags: |
             type=ref,event=branch
             type=sha,prefix={{branch}}-
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
+            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
+            type=raw,value=dev-latest,enable=${{ github.ref == 'refs/heads/develop' }}
+            type=raw,value=stage-latest,enable=${{ github.ref == 'refs/heads/staging' }}
 
       - name: Build and push Gateway image
         uses: docker/build-push-action@v5
@@ -114,8 +115,9 @@ jobs:
           tags: |
             type=ref,event=branch
             type=sha,prefix={{branch}}-
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
+            type=raw,value=latest,enable=${{ github.ref == 'refs/heads/main' }}
+            type=raw,value=dev-latest,enable=${{ github.ref == 'refs/heads/develop' }}
+            type=raw,value=stage-latest,enable=${{ github.ref == 'refs/heads/staging' }}
 
       - name: Build and push Bootstrapper image
         uses: docker/build-push-action@v5
@@ -128,21 +130,29 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-  deploy-staging:
+  deploy-development:
     runs-on: ubuntu-latest
     needs: build-docker-images
     if: github.ref == 'refs/heads/develop'
+    environment: development
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Deploy to development
+        run: echo "Deploying to development environment..."
+
+  deploy-staging:
+    runs-on: ubuntu-latest
+    needs: build-docker-images
+    if: github.ref == 'refs/heads/staging'
     environment: staging
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
       - name: Deploy to staging
-        run: |
-          echo "Deploying to staging environment..."
-          # Add your staging deployment commands here
-          # Example: kubectl apply -f k8s/staging/
+        run: echo "Deploying to staging environment..."
 
   deploy-production:
     runs-on: ubuntu-latest
@@ -153,9 +163,5 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
       - name: Deploy to production
-        run: |
-          echo "Deploying to production environment..."
-          # Add your production deployment commands here
-          # Example: kubectl apply -f k8s/production/
+        run: echo "Deploying to production environment..."
