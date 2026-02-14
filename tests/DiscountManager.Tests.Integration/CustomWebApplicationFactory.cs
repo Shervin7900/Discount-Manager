@@ -1,8 +1,11 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using Moq;
 using StackExchange.Redis;
 using Parbad.Builder;
@@ -23,32 +26,62 @@ public class CustomWebApplicationFactory<TProgram> : WebApplicationFactory<TProg
 {
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
-        builder.ConfigureServices(services =>
+        // UseSetting is extremely fast and runs early
+        builder.UseSetting("ConnectionStrings:CatalogDb", "DataSource=:memory:");
+        builder.UseSetting("ConnectionStrings:ShopsDb", "DataSource=:memory:");
+        builder.UseSetting("ConnectionStrings:DiscountDb", "DataSource=:memory:");
+        builder.UseSetting("ConnectionStrings:InventoryDb", "DataSource=:memory:");
+        builder.UseSetting("ConnectionStrings:OrderingDb", "DataSource=:memory:");
+        builder.UseSetting("ConnectionStrings:PaymentDb", "DataSource=:memory:");
+        builder.UseSetting("ConnectionStrings:IdentityDb", "DataSource=:memory:");
+        builder.UseSetting("ConnectionStrings:CustomerDb", "DataSource=:memory:");
+
+        builder.ConfigureTestServices(services =>
         {
-            // Helper to remove and add in-memory DbContext
+            // Aggressively remove EVERY service from the SQL Server provider assembly
+            // This is the only way to avoid "multiple providers" error in EF Core
+            var sqlServerAssemblies = new[] 
+            { 
+                "Microsoft.EntityFrameworkCore.SqlServer",
+                "Microsoft.Data.SqlClient"
+            };
+
+            var toRemove = services.Where(d => 
+                (d.ServiceType.Assembly.FullName != null && sqlServerAssemblies.Any(a => d.ServiceType.Assembly.FullName.Contains(a))) ||
+                (d.ImplementationType?.Assembly.FullName != null && sqlServerAssemblies.Any(a => d.ImplementationType.Assembly.FullName.Contains(a)))).ToList();
+            
+            foreach (var d in toRemove) services.Remove(d);
+
+            // Clean up Parbad as well
+            var parbadServices = services.Where(d => d.ServiceType.Namespace?.Contains("Parbad") == true).ToList();
+            foreach (var d in parbadServices) services.Remove(d);
+
             void ReplaceWithInMemory<TContext>(string dbName) where TContext : DbContext
             {
-                var descriptor = services.SingleOrDefault(d => d.ServiceType == typeof(DbContextOptions<TContext>));
-                if (descriptor != null) services.Remove(descriptor);
+                var removeContext = services.Where(d => 
+                    d.ServiceType == typeof(TContext) || 
+                    d.ServiceType == typeof(DbContextOptions<TContext>) ||
+                    d.ServiceType == typeof(DbContextOptions)).ToList();
+                
+                foreach (var d in removeContext) services.Remove(d);
 
-                // Use a unique name per test run instance if possible, or a stable one.
-                // For integration tests, a stable name is usually fine unless tests run in parallel.
-                services.AddDbContext<TContext>(options => options.UseInMemoryDatabase(dbName));
+                services.AddDbContext<TContext>(options => 
+                {
+                    options.UseInMemoryDatabase(dbName);
+                    options.ConfigureWarnings(w => w.Ignore(InMemoryEventId.TransactionIgnoredWarning));
+                });
             }
 
-            var uniqueId = Guid.NewGuid().ToString().Substring(0, 8);
-            ReplaceWithInMemory<CatalogDbContext>($"Catalog_{uniqueId}");
-            ReplaceWithInMemory<DiscountDbContext>($"Discount_{uniqueId}");
-            ReplaceWithInMemory<OrderingDbContext>($"Ordering_{uniqueId}");
-            ReplaceWithInMemory<PaymentDbContext>($"Payment_{uniqueId}");
-            ReplaceWithInMemory<ShopsDbContext>($"Shops_{uniqueId}");
-            ReplaceWithInMemory<InventoryDbContext>($"Inventory_{uniqueId}");
-            ReplaceWithInMemory<IdentityDbContext>($"Identity_{uniqueId}");
-            ReplaceWithInMemory<CustomerDbContext>($"Customer_{uniqueId}");
+            ReplaceWithInMemory<CatalogDbContext>("CatalogTest");
+            ReplaceWithInMemory<DiscountDbContext>("DiscountTest");
+            ReplaceWithInMemory<OrderingDbContext>("OrderingTest");
+            ReplaceWithInMemory<PaymentDbContext>("PaymentTest");
+            ReplaceWithInMemory<ShopsDbContext>("ShopsTest");
+            ReplaceWithInMemory<InventoryDbContext>("InventoryTest");
+            ReplaceWithInMemory<IdentityDbContext>("IdentityTest");
+            ReplaceWithInMemory<CustomerDbContext>("CustomerTest");
 
             // Mock Redis
-            // ... (keep Redis mock same)
-            // We remove all registrations and add a single mock that returns a mock database.
             var redisDescriptors = services.Where(d => d.ServiceType == typeof(IConnectionMultiplexer)).ToList();
             foreach (var d in redisDescriptors) services.Remove(d);
 
@@ -57,40 +90,38 @@ public class CustomWebApplicationFactory<TProgram> : WebApplicationFactory<TProg
             mockMultiplexer.Setup(_ => _.GetDatabase(It.IsAny<int>(), It.IsAny<object>())).Returns(mockDatabase.Object);
             services.AddSingleton(mockMultiplexer.Object);
 
-            // Re-configure Parbad for In-Memory specifically for tests
+            // Re-configure Parbad for In-Memory
             services.AddParbad()
                 .ConfigureGateways(gateways => gateways.AddParbadVirtual())
                 .ConfigureStorage(storage =>
                 {
                     storage.UseEfCore(ef =>
                     {
-                        ef.ConfigureDbContext = db => db.UseInMemoryDatabase("InMemoryParbad");
+                        ef.ConfigureDbContext = db => db.UseInMemoryDatabase("ParbadTest");
                         ef.DefaultSchema = "payment";
                     });
                 })
-                .ConfigureHttpContext(builder => builder.UseDefaultAspNetCore());
-
-            // Build the provider once to initialize databases explicitly
-            var sp = services.BuildServiceProvider();
-            using var scope = sp.CreateScope();
-            var providers = scope.ServiceProvider;
-
-            try
-            {
-                // Ensure all DBs are created before app starts and seeder runs
-                providers.GetRequiredService<CatalogDbContext>().Database.EnsureCreated();
-                providers.GetRequiredService<ShopsDbContext>().Database.EnsureCreated();
-                providers.GetRequiredService<DiscountDbContext>().Database.EnsureCreated();
-                providers.GetRequiredService<OrderingDbContext>().Database.EnsureCreated();
-                providers.GetRequiredService<PaymentDbContext>().Database.EnsureCreated();
-                providers.GetRequiredService<InventoryDbContext>().Database.EnsureCreated();
-                providers.GetRequiredService<IdentityDbContext>().Database.EnsureCreated();
-                providers.GetRequiredService<CustomerDbContext>().Database.EnsureCreated();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"PRE-START ERROR: {ex.Message}");
-            }
+                .ConfigureHttpContext(b => b.UseDefaultAspNetCore());
         });
+    }
+
+    protected override IHost CreateHost(IHostBuilder builder)
+    {
+        var host = base.CreateHost(builder);
+
+        // Ensure databases are created before tests run
+        using var scope = host.Services.CreateScope();
+        var sp = scope.ServiceProvider;
+        
+        sp.GetRequiredService<CatalogDbContext>().Database.EnsureCreated();
+        sp.GetRequiredService<ShopsDbContext>().Database.EnsureCreated();
+        sp.GetRequiredService<DiscountDbContext>().Database.EnsureCreated();
+        sp.GetRequiredService<OrderingDbContext>().Database.EnsureCreated();
+        sp.GetRequiredService<PaymentDbContext>().Database.EnsureCreated();
+        sp.GetRequiredService<InventoryDbContext>().Database.EnsureCreated();
+        sp.GetRequiredService<IdentityDbContext>().Database.EnsureCreated();
+        sp.GetRequiredService<CustomerDbContext>().Database.EnsureCreated();
+
+        return host;
     }
 }

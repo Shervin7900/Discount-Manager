@@ -3,13 +3,15 @@ using FluentAssertions;
 using System.Net;
 using System.Net.Http.Json;
 
+using DiscountManager.Tests.Integration;
+
 namespace DiscountManager.Tests.Security;
 
-public class EndpointProtectionTests : IClassFixture<WebApplicationFactory<DiscountManager.Bootstrapper.Program>>
+public class EndpointProtectionTests : IClassFixture<CustomWebApplicationFactory<DiscountManager.Bootstrapper.Program>>
 {
-    private readonly WebApplicationFactory<DiscountManager.Bootstrapper.Program> _factory;
+    private readonly CustomWebApplicationFactory<DiscountManager.Bootstrapper.Program> _factory;
 
-    public EndpointProtectionTests(WebApplicationFactory<DiscountManager.Bootstrapper.Program> factory)
+    public EndpointProtectionTests(CustomWebApplicationFactory<DiscountManager.Bootstrapper.Program> factory)
     {
         _factory = factory;
     }
