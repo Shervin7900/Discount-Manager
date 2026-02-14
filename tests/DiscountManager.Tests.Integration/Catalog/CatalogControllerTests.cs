@@ -5,11 +5,11 @@ using DiscountManager.Modules.Catalog.Domain;
 
 namespace DiscountManager.Tests.Integration.Catalog;
 
-public class CatalogControllerTests : IClassFixture<WebApplicationFactory<DiscountManager.Bootstrapper.Program>>
+public class CatalogControllerTests : IClassFixture<CustomWebApplicationFactory<DiscountManager.Bootstrapper.Program>>
 {
-    private readonly WebApplicationFactory<DiscountManager.Bootstrapper.Program> _factory;
+    private readonly CustomWebApplicationFactory<DiscountManager.Bootstrapper.Program> _factory;
 
-    public CatalogControllerTests(WebApplicationFactory<DiscountManager.Bootstrapper.Program> factory)
+    public CatalogControllerTests(CustomWebApplicationFactory<DiscountManager.Bootstrapper.Program> factory)
     {
         _factory = factory;
     }
