@@ -502,3 +502,8 @@ G:\Discount Manager\tests\DiscountManager.Tests.Integration\obj\Debug\net10.0\re
 G:\Discount Manager\tests\DiscountManager.Tests.Integration\obj\Debug\net10.0\DiscountManager.Tests.Integration.pdb
 G:\Discount Manager\tests\DiscountManager.Tests.Integration\obj\Debug\net10.0\DiscountManager.Tests.Integration.genruntimeconfig.cache
 G:\Discount Manager\tests\DiscountManager.Tests.Integration\obj\Debug\net10.0\ref\DiscountManager.Tests.Integration.dll
+G:\Discount Manager\tests\DiscountManager.Tests.Integration\bin\Debug\net10.0\appsettings.Production.json
+G:\Discount Manager\tests\DiscountManager.Tests.Integration\bin\Debug\net10.0\appsettings.Staging.json
+G:\Discount Manager\tests\DiscountManager.Tests.Integration\bin\Debug\net10.0\Castle.Core.dll
+G:\Discount Manager\tests\DiscountManager.Tests.Integration\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.InMemory.dll
+G:\Discount Manager\tests\DiscountManager.Tests.Integration\bin\Debug\net10.0\Moq.dll

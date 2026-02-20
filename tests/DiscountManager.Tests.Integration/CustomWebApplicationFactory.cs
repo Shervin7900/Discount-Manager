@@ -38,36 +38,31 @@ public class CustomWebApplicationFactory<TProgram> : WebApplicationFactory<TProg
 
         builder.ConfigureTestServices(services =>
         {
-            // Aggressively remove EVERY service from the SQL Server provider assembly
-            // This is the only way to avoid "multiple providers" error in EF Core
-            var sqlServerAssemblies = new[] 
-            { 
-                "Microsoft.EntityFrameworkCore.SqlServer",
-                "Microsoft.Data.SqlClient"
-            };
+            // Remove existing DbContextOptions to ensure no SQL Server connections remain
+            var dbContextOptions = services.Where(d => 
+                d.ServiceType == typeof(DbContextOptions) || 
+                (d.ServiceType.IsGenericType && d.ServiceType.GetGenericTypeDefinition() == typeof(DbContextOptions<>))
+            ).ToList();
+            foreach (var d in dbContextOptions) services.Remove(d);
 
-            var toRemove = services.Where(d => 
-                (d.ServiceType.Assembly.FullName != null && sqlServerAssemblies.Any(a => d.ServiceType.Assembly.FullName.Contains(a))) ||
-                (d.ImplementationType?.Assembly.FullName != null && sqlServerAssemblies.Any(a => d.ImplementationType.Assembly.FullName.Contains(a)))).ToList();
-            
-            foreach (var d in toRemove) services.Remove(d);
+            var dbConnectionDescriptor = services.SingleOrDefault(d => d.ServiceType == typeof(System.Data.Common.DbConnection));
+            if (dbConnectionDescriptor != null) services.Remove(dbConnectionDescriptor);
 
-            // Clean up Parbad as well
+            // Create an isolated service provider specifically for EF Core InMemory databases
+            var efServiceProvider = new ServiceCollection()
+                .AddEntityFrameworkInMemoryDatabase()
+                .BuildServiceProvider();
+
+            // Clean up Parbad existing services
             var parbadServices = services.Where(d => d.ServiceType.Namespace?.Contains("Parbad") == true).ToList();
             foreach (var d in parbadServices) services.Remove(d);
 
             void ReplaceWithInMemory<TContext>(string dbName) where TContext : DbContext
             {
-                var removeContext = services.Where(d => 
-                    d.ServiceType == typeof(TContext) || 
-                    d.ServiceType == typeof(DbContextOptions<TContext>) ||
-                    d.ServiceType == typeof(DbContextOptions)).ToList();
-                
-                foreach (var d in removeContext) services.Remove(d);
-
                 services.AddDbContext<TContext>(options => 
                 {
                     options.UseInMemoryDatabase(dbName);
+                    options.UseInternalServiceProvider(efServiceProvider);
                     options.ConfigureWarnings(w => w.Ignore(InMemoryEventId.TransactionIgnoredWarning));
                 });
             }
@@ -90,14 +85,17 @@ public class CustomWebApplicationFactory<TProgram> : WebApplicationFactory<TProg
             mockMultiplexer.Setup(_ => _.GetDatabase(It.IsAny<int>(), It.IsAny<object>())).Returns(mockDatabase.Object);
             services.AddSingleton(mockMultiplexer.Object);
 
-            // Re-configure Parbad for In-Memory
+            // Re-configure Parbad for In-Memory with isolation
             services.AddParbad()
                 .ConfigureGateways(gateways => gateways.AddParbadVirtual())
                 .ConfigureStorage(storage =>
                 {
                     storage.UseEfCore(ef =>
                     {
-                        ef.ConfigureDbContext = db => db.UseInMemoryDatabase("ParbadTest");
+                        ef.ConfigureDbContext = db => {
+                            db.UseInMemoryDatabase("ParbadTest");
+                            db.UseInternalServiceProvider(efServiceProvider);
+                        };
                         ef.DefaultSchema = "payment";
                     });
                 })

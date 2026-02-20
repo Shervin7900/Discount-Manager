@@ -441,3 +441,5 @@ G:\Discount Manager\tests\DiscountManager.Tests.E2E\obj\Debug\net10.0\refint\Dis
 G:\Discount Manager\tests\DiscountManager.Tests.E2E\obj\Debug\net10.0\DiscountManager.Tests.E2E.pdb
 G:\Discount Manager\tests\DiscountManager.Tests.E2E\obj\Debug\net10.0\DiscountManager.Tests.E2E.genruntimeconfig.cache
 G:\Discount Manager\tests\DiscountManager.Tests.E2E\obj\Debug\net10.0\ref\DiscountManager.Tests.E2E.dll
+G:\Discount Manager\tests\DiscountManager.Tests.E2E\bin\Debug\net10.0\appsettings.Production.json
+G:\Discount Manager\tests\DiscountManager.Tests.E2E\bin\Debug\net10.0\appsettings.Staging.json
